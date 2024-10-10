@@ -1,0 +1,605 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //         const getName=()=>{
+      // return true
+      //         }
+      //       console.log(getName())
+
+      // var x = 1;
+      // a();b()
+      // console.log(x)
+
+      //   function a(){
+      //     var x = 10
+      //     console.log(x)
+      //   }
+
+      //   function b(){
+      //     var x = 100
+      //     console.log(x)
+      //   }
+
+      let b = 100;
+
+      {
+        var a = 10;
+        let b = 20;
+        const c = 30;
+        console.log(a);
+        console.log(b);
+        console.log(c);
+      }
+      console.log(b);
+
+      ///shadowing in javascript///
+
+      const c = 100;
+      function x() {
+        const c = 30;
+        console.log(c);
+      }
+
+      x();
+      console.log(c);
+
+      // let a=78
+      // {
+      //     var a=90
+      // }
+
+      //// closure
+
+      function y1() {
+        var h = 1000;
+
+        function y() {
+          var g = 30;
+          function z() {
+            console.log(g, h);
+          }
+          z();
+        }
+        y();
+      }
+
+    y1();
+
+
+
+    ////////set timeouts and closures////
+
+
+function x(){
+    var i =1
+
+    for(var i =1; i<=5 ; i++){
+        function close(i){
+        setTimeout(function(){
+console.log(i)
+    },i*1000)
+    }
+    close(i)
+}    console.log("hi")
+}
+x()
+
+
+
+function outest(){
+    var c =20;
+    function outer(b){
+
+        function inner(){
+            console.log(xc,b,c)
+        }
+        let xc = 10
+        return inner
+    }
+    return outer
+}
+
+let xc = 100
+
+outest()("siddharth")()
+
+
+
+function Counter(){
+
+    var count = 0;
+    this.incrementCounter= function(){
+        count ++
+        console.log(count)
+
+    }
+
+    this.decrementCounter= function(){
+        count --
+        console.log(count)
+
+    }
+}
+
+var counter1 = new Counter()
+counter1.incrementCounter()
+counter1.incrementCounter()
+counter1.decrementCounter()
+
+
+//// here z is garbage collected because it is not useful for us unlike the a variable/////
+function o(){
+    var a= 20 ; var z=30
+    return function u(){
+        console.log(a)
+    }
+}
+
+
+
+
+
+const p =o()
+p()
+
+z1()
+// v1()
+////function satement or function declaration///
+function z1(){
+    console.log("z called")
+}
+
+//// function expression/////
+// var v1 = function(){
+//     console.log("namaste")
+// }
+
+//// anonymous function//// these are used in the places where functions are used as values it means it can only be assigend to the varibales 
+// and use that variable which holds the value///
+
+
+// function(){
+
+// }
+
+///named function expression///
+// var b1 = function hello(){
+
+// }
+
+// hello()/// this will throw refernece rror xyz is not defined////
+/// you can only call b1()/////
+
+////first class functions///
+
+
+const b6=function(){
+    return function xyz(){
+
+    }
+}
+console.log(b6())////
+
+const b7 = function tle(h){
+console.log(h)
+}
+
+b7(function(){
+    console.log("hello")
+})  //// here passing a function as an argument to other function is first class functions/////
+
+
+
+let arrayu= [1,2,3,45]
+
+let total = arrayu.reduce((acc,currentValue)=>{
+let acc1= acc+currentValue
+
+return acc1
+},0)
+
+console.log(total) -->
+<script>
+
+const users = [{
+    firstName:"akshay", lastName:"saini", age:26
+},
+{
+    firstName:"donald", lastName:"trump", age:75
+},
+{
+    firstName:"siddharth", lastName:"musk", age:50
+},
+{
+    firstName:"siddharth", lastName:"boorgu", age:26
+},
+{
+    firstName:"siddharth", lastName:"boorgu", age:26
+},
+]
+
+const output=users.reduce((acc,curr)=>{
+    if(acc[curr.age]){
+        acc[curr.age] = ++acc[curr.age] 
+    }else{
+        acc[curr.age]=1
+    }
+    return acc
+},{})
+
+console.log(output)
+
+// const output = users.reduce((acc,curr)=>{
+//     if(curr.age > 30){
+//         acc.push(curr.firstName)
+//     }
+//     return acc
+
+// },[])
+// console.log(output)
+
+
+// let a = 10;
+// let b = ++a;  // Pre-increment: 'a' becomes 11, then 'b' is assigned 11
+// let c = a++;  // Post-increment: 'c' is assigned 11, then 'a' becomes 12
+
+// console.log(a); // Output: 12
+// console.log(b); // Output: 11
+// console.log(c); // Output: 11
+
+
+////////////////Season 2////////////
+
+
+/////Promises/////
+
+
+const cart = ["shoes","shirts","pants"]
+
+
+// createOrder(cart)
+// .then((orderId)=>{
+   
+//      return orderId
+//     }
+// )
+// .then(function(orderId){
+// return proceedToPayment(orderId)
+
+// })
+// .then(function(PaymentDetails){
+//     console.log(PaymentDetails)
+//     return orderSummary(PaymentDetails)
+
+// })
+// .then((function(order){
+//     return updateWallet(order)
+
+// }))
+// .then((res)=>console.log(res))
+// .catch(
+//     (err)=>{
+//         console.log(err.message)}
+// )
+
+// function createOrder(cart){
+//     const promise1 = new Promise(function(resolve,reject){
+
+//         if(!validate(cart)){
+//             const err = new Error("Cart is not valid")
+//             reject(err)
+//         }
+
+//         const orderId ="12345"
+//         if(orderId){
+//             resolve(orderId)
+//         }
+
+// })
+// return promise1
+// }
+// function proceedToPayment(orderId){
+//     return new Promise(function(resolve,reject){
+
+//         if(orderId){
+//             resolve({paymentStatus : 1, message : "Payment successfully completed"})
+//         }
+//         else{
+//             reject("Error in making payment")
+//         }
+       
+
+//     })
+
+// }
+
+
+// function orderSummary(orderStatus){
+//     return new Promise(function(resolve,reject){
+//         if(orderStatus.paymentStatus === 1){
+//             resolve({status:'success', orders : cart})
+//         }
+//         else{
+//             reject("Error")
+//         }
+        
+//     })
+// }
+
+// let walletBalance = 10000
+// function updateWallet(PaymentDetails){
+//     return new Promise(function (resolve,reject){
+//         if(PaymentDetails.status == "success"){
+//             let orderAmount = 5000
+//             walletBalance = walletBalance - orderAmount
+
+//             resolve({wallet :walletBalance,details:"payment done successfully" })
+//         }
+//         else{
+//             reject("Error")
+//         }
+       
+//     })
+// }
+// function validate(){
+//     return true
+// }
+
+
+// const p =new Promise(function(resolve,reject){
+//     resolve("Promise resolved value")
+// })
+
+//  async function hello(){
+//     const value =await p
+//     console.log(value)
+//     return value
+// }
+
+// console.log(hello())
+
+
+// const cart = [
+//     {
+//         itemName : 'Shoes',
+//         itemPrice : 2000
+//     },
+//     {
+//         itemName : 'Paint',
+//         itemPrice : 2500
+//     },
+//     {
+//         itemName : 'Kurta',
+//         itemPrice : 1500
+//     }
+// ];
+
+// let walletBalance = 10000;
+
+// createOrder(cart)
+//     .then(function(orderId){
+//         return orderId;
+//     })
+//     .then(function(orderId){
+//         return proceedToPayment(orderId);
+//     })
+//     .then(function(orderStatus){
+//         return showOrderSummery(orderStatus);
+//     })
+//     .then(function(orderHistory){
+//         return updateWallet(orderHistory);
+//     })
+//     .then(function(res){
+//        console.log(res);
+//     })
+//     .catch((err)=>{
+//         console.log(err.message)
+//     })
+
+// function createOrder(cart){
+//     return new Promise(function(resolve,reject){
+//         if(!validateCart(cart)){
+//             reject(new Error("Cart is not valid"));
+//         }
+//         let orderId=10
+//         if(orderId){
+//             resolve(orderId);
+//         }
+//     })
+// }
+
+// function proceedToPayment(orderId){
+//     return new Promise(function(resolve,reject){
+//         if(orderId){
+//             resolve({paymentStatus : 1, message : "Payment successfully completed"});
+//         }else{
+//             reject(new Error("Payment Failed"));
+//         }
+//     })
+// }
+
+// function showOrderSummery(orderStatus){
+//     return new Promise(function(resolve,reject){
+//         if(orderStatus.paymentStatus === 1){
+//             resolve({status:'success', orders : cart});
+//         }else{
+//             reject(new Error("Something went wrong"));
+//         }
+//     })
+// }
+
+// function updateWallet(orderHistory){
+//     return new Promise(function(resolve,reject){
+//         if(orderHistory.status === 'success'){
+//             let orderAmount = 6000;
+//             walletBalance = walletBalance - orderAmount;
+//             resolve({balance : walletBalance, 'message':'Wallet updated'});
+//         }else{
+//             reject(new Error("Wallet balance not updated"));
+//         }
+//     })
+// }
+
+// function validateCart(cart){
+//     return true;
+// }
+
+
+
+
+// const promise1 = new Promise((resolve) => {
+//     setTimeout(() => {
+//         resolve("Promise 1 resolved after 5 seconds");
+//     }, 20000); // 5 seconds delay
+// });
+
+// const promise2 = new Promise((resolve) => {
+//     setTimeout(() => {
+//         resolve("Promise 2 resolved after 20 seconds");
+//     }, 5000); //  seconds delay
+// });
+
+// async function handlePromises() {
+//     console.log("Waiting for promises to resolve...");
+//     fetch('https://jsonplaceholder.typicode.com/posts/1')
+//     .then(response => {
+//         console.log(response); // Log the Response object
+//         return response.json(); // Parse the JSON body of the response
+//     })
+//     .then(data => {
+//         console.log(data); // Log the parsed data
+//     })
+//     .catch(error => {
+//         console.error('Error:', error); // Handle any errors
+//     });
+
+//     const result1 = await promise1; // Wait for the first promise to resolve (5 seconds)
+//     console.log(result1);
+
+//     const result2 = await promise2; // Wait for the second promise to resolve (10 seconds)
+//     console.log(result2);
+
+//     console.log("Both promises resolved!");
+// }
+
+// handlePromises();
+
+
+console.log(this)
+
+
+
+function x(){
+    console.log(this)
+}
+
+x()
+
+const obj ={
+    name:"Siddharth",
+    x : function(){
+        console.log(this.name)
+    }
+}
+
+obj.x()
+
+
+
+const obj3={
+    name:"siddus",
+    
+}
+
+obj.x.call(obj3)
+
+const obj2 ={
+    name :"Boorgu",
+    y : ()=>{
+        console.log(this)
+    }
+}
+
+
+obj2.y()
+
+
+const obj4 = {
+    name:"Ram",
+    z1:function(){
+      const o=()=>{
+            console.log(this.name)
+        }
+        o()
+    }
+
+}
+
+
+obj4.z1()///// this keyword works differently in arrow function and that arrow function is nested in a normal function//// then that this keyword points out to that immediate
+//// objectt and not global object unlike when this keyword is in normal arrow function
+
+
+
+
+
+// const obje5 ={
+//  name:"ravi",
+//     city:"hyderbad"
+// }
+// console.log(Object.keys(obje5))
+// console.log(Object.values(obje5))
+
+const students = [
+    { name: "John Doe", city: "New York", country: "USA",marks:80 },
+    { name: "Jane Smith", city: "London", country: "UK",marks:30 },
+    { name: "Carlos Ruiz", city: "Mexico City", country: "Mexico",marks:200 },
+    { name: "Aiko Tanaka", city: "Tokyo", country: "Japan",marks:15 }
+  ];
+
+  const array1 = []
+  const details = students.filter((item)=> {
+   
+    if(item.marks > 60 ){
+        return item
+    }else{
+      array1.push(item)
+    }
+   
+  })
+
+  console.log(details)
+  console.log(array1)
+
+
+  const transformedData = students.map((item)=>{
+    // if(item.marks == 30){
+    //    return item.marks = 100
+    // }else{
+    //     return item.marks
+    // }
+    return item.marks
+  })
+
+  console.log(transformedData)
+
+
+  const p1 = new Promise(function(resolve,reject){
+
+    resolve("i am siddharth")
+
+  })
+
+  p1.then((res)=>console.log(res))
+
+
+      
+    </script>
+  </body>
+</html>

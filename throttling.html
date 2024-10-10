@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Throttle Scroll Example</title>
+  <style>
+    body {
+      height: 2000px; /* Make the page scrollable */
+      background-color: lightblue;
+    }
+  </style>
+</head>
+<body>
+  <h1>Scroll to see throttling in action</h1>
+
+  <script>
+    // Simplified throttle function
+    function throttle(func, limit) {
+      let inThrottle;
+
+      return function() {
+        if (!inThrottle) {
+          func();
+          inThrottle = true;
+         
+        
+        }
+        setTimeout(() => (inThrottle = false), limit);
+      
+      };
+    }
+
+    // Example of a function to be throttled
+    function logScroll() {
+      console.log("Scroll position:", window.scrollY);
+    }
+
+    // Apply throttling to the logScroll function with a limit of 1000ms (1 second)
+    const throttledScroll = throttle(logScroll, 2000);
+
+    // Add the throttled function as the scroll event listener
+    window.addEventListener('scroll', throttledScroll);
+  </script>
+</body>
+</html>
